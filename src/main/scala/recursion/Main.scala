@@ -11,6 +11,12 @@ object Main {
 
     println("Factorial")
     println(factorial(5))
+
+    println("Balanced Parenthesis")
+    println(balance("(if (zero? x) max (/ 1 x))".toList))
+    println(balance("I told him (that it’s not (yet) done). (But he wasn’t listening)".toList))
+    println(balance(" :-)".toList))
+    println(balance("())(".toList))
   }
 
   def pascal(c: Int, r: Int): Int =
@@ -23,6 +29,16 @@ object Main {
       else loop(acc * n, n - 1)
 
     loop(1, n)
+  }
+
+  def balance(chars: List[Char]): Boolean = {
+    def balanced(chars: List[Char], open: Int): Boolean =
+      if (chars.isEmpty) open == 0
+      else if (chars.head == '(') balanced(chars.tail, open + 1)
+      else if (chars.head == ')') open > 0 && balanced(chars.tail, open - 1)
+      else balanced(chars.tail, open)
+
+    balanced(chars, 0)
   }
 
 }
