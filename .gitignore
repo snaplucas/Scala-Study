@@ -1,0 +1,13 @@
+.classpath
+.project
+.settings/
+target/
+.idea/
+*.iml
+*.iws
+/out/
+derby.log
+jackrabbit.iml
+jackrabbit/
+repository.xml
+repository/
