@@ -1,6 +1,6 @@
 package recursion
 
-object Main {
+object Recursion {
   def main(args: Array[String]) {
     println("Pascal's Triangle")
     for (row <- 0 to 10) {
