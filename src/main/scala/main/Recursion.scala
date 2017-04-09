@@ -54,4 +54,7 @@ object Recursion {
     loop(a, 0)
   }
 
+  def findNthElement[T](n: Int, xs: List[T]): T =
+    if (n == 0) xs.head
+    else findNthElement(n - 1, xs.tail)
 }
