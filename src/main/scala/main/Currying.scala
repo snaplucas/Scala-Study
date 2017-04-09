@@ -1,4 +1,4 @@
-package recursion
+package main
 
 object Currying {
   def main(args: Array[String]): Unit = {

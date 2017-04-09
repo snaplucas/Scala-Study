@@ -1,4 +1,4 @@
-package recursion
+package main
 
 object Recursion {
   def main(args: Array[String]) {
