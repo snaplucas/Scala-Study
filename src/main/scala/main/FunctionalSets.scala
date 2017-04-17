@@ -54,6 +54,8 @@ object FunctionalSets {
 
   def exists(s: Set, p: Int => Boolean): Boolean = !forall(s, x => !p(x))
 
+  def map(s: Set, f: Int => Int): Set = x => exists(s, a => f(a) == x)
+
   def toString(s: Set): String = {
     val xs = for (i <- -bound to bound if contains(s, i)) yield i
     xs.mkString("{", ",", "}")
