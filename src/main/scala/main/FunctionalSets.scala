@@ -4,25 +4,41 @@ object FunctionalSets {
   def main(args: Array[String]): Unit = {
     println(contains(singletonSet(1), 1))
 
-    val s0 = singletonSet(-10)
-    val s1 = singletonSet(3)
-    val s2 = singletonSet(7)
-    val s3 = singletonSet(9)
-    val s4 = union(s1, s2) // { 3, 9 }
+    val s1 = singletonSet(1)
+    val s2 = singletonSet(2)
+    val s3 = singletonSet(3)
 
-    printSet(s4)
-    val s5 = union(s0, s4)
-    val s6 = diff(s0, s1)
+    val s4 = union(s1, s2)
+    val s5 = union(s2, s3)
+
+    val s6 = diff(s4, s1)
     printSet(s6)
 
     val s7 = intersect(s4, s5)
+    printSet(s7)
+
     val s8 = union(s4, s5)
-    println("s8: ")
     printSet(s8)
 
-    println("s9: ")
-    val s9 = filter(s8, x => x > 0)
+    val s9 = filter(s8, x => x > 1)
     printSet(s9)
+
+    val s10 = filter(s8, x => x % 2 == 1)
+    printSet(s10)
+
+    def s11: Set = x => x >= 2 && x <= 4
+
+    println(forall(s11, x => x < 4))
+    println(forall(s11, x => x < 5))
+
+    println(exists(s11, x => x == 3))
+    println(exists(s11, x => x == 1))
+
+    val s12 = map(s8, x => x * x)
+    printSet(s12)
+
+    val s13 = map(s11, x => x / 2)
+    printSet(s13)
   }
 
 
