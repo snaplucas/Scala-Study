@@ -57,4 +57,13 @@ object Recursion {
   def findNthElement[T](n: Int, xs: List[T]): T =
     if (n == 0) xs.head
     else findNthElement(n - 1, xs.tail)
+
+  def listLength(arr: List[Int]): Int = {
+    def loop(a: Int, arr: List[Int]): Int =
+      if (arr.isEmpty) a
+      else loop(a + 1, arr.tail)
+    loop(0, arr)
+  }
+
+
 }
