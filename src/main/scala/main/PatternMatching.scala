@@ -16,4 +16,9 @@ object PatternMatching {
   def main(args: Array[String]): Unit = {
     println(eval(Sum(Number(1), Number(2))))
   }
+
+  def insert(x: Int, xs: List[Int]): List[Int] = xs match {
+    case List() => List(x)
+    case y :: ys => if (x <= y) x :: ys else y :: insert(x, ys)
+  }
 }
