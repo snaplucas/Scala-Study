@@ -17,7 +17,7 @@ object Huffman {
 
   def chars(tree: CodeTree): List[Char] = tree match {
     case Leaf(char, _) => List(char)
-    case Fork(left, right, _, _) => chars(left):::chars(right)
+    case Fork(left, right, _, _) => chars(left) ::: chars(right)
 
   }
 
@@ -36,7 +36,9 @@ object Huffman {
     loop(chars, List())
   }
 
-  def makeOrderedLeafList(freqs: List[(Char, Int)]): List[Leaf] = ???
+  def makeOrderedLeafList(freqs: List[(Char, Int)]): List[Leaf] =
+    freqs.sortWith(_._2 < _._2).map(_ => Leaf)
+
 
   def singleton(trees: List[CodeTree]): Boolean = ???
 
