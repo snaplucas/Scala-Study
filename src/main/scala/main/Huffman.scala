@@ -37,7 +37,7 @@ object Huffman {
   }
 
   def makeOrderedLeafList(freqs: List[(Char, Int)]): List[Leaf] =
-    freqs.sortWith(_._2 < _._2).map(_ => Leaf)
+    freqs.sortWith(_._2 < _._2).map(x => Leaf(x._1,x._2))
 
 
   def singleton(trees: List[CodeTree]): Boolean = trees.size == 1
