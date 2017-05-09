@@ -40,7 +40,7 @@ object Huffman {
     freqs.sortWith(_._2 < _._2).map(_ => Leaf)
 
 
-  def singleton(trees: List[CodeTree]): Boolean = ???
+  def singleton(trees: List[CodeTree]): Boolean = trees.size == 1
 
   def combine(trees: List[CodeTree]): List[CodeTree] = ???
 
