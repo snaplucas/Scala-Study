@@ -26,7 +26,15 @@ object Huffman {
 
   def string2Chars(str: String): List[Char] = str.toList
 
-  def times(chars: List[Char]): List[(Char, Int)] = ???
+  def times(chars: List[Char]): List[(Char, Int)] = {
+    def loop(chars: List[Char], list: List[(Char, Int)]): List[(Char, Int)] = {
+      if (chars.isEmpty) list
+      else if (list.contains((chars.head, 1))) loop(chars.tail, (list.head._1, list.head._2 + 1) :: list.tail)
+      else loop(chars.tail, list ::: List((chars.head, 1)))
+    }
+
+    loop(chars, List())
+  }
 
   def makeOrderedLeafList(freqs: List[(Char, Int)]): List[Leaf] = ???
 
