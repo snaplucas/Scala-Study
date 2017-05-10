@@ -52,8 +52,16 @@ object Huffman {
     case y :: ys => if (weight(x) <= weight(y)) x :: ys else y :: insert(x, ys)
   }
 
-  def until(xxx: ???, yyy: ???)(zzz: ???): ??? = ???
+  def combine_v2(trees: List[CodeTree]): List[CodeTree] = trees match {
+    case left :: right :: cs => (makeCodeTree(left, right) :: cs).sortWith((t1, t2) => weight(t1) < weight(t2))
+    case _ => trees
+  }
 
+  def until(p: List[CodeTree] => Boolean, f: List[CodeTree] => List[CodeTree])(trees: List[CodeTree]): List[CodeTree] = {
+    if (p(trees)) trees
+    else until(p, f)(f(trees))
+  }
+  
   def createCodeTree(chars: List[Char]): CodeTree = ???
 
   type Bit = Int
