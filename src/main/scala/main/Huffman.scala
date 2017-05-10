@@ -61,8 +61,8 @@ object Huffman {
     if (p(trees)) trees
     else until(p, f)(f(trees))
   }
-  
-  def createCodeTree(chars: List[Char]): CodeTree = ???
+
+  def createCodeTree(chars: List[Char]): CodeTree = until(singleton, combine)(makeOrderedLeafList(times(chars))).head
 
   type Bit = Int
 
