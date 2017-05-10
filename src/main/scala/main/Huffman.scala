@@ -37,12 +37,20 @@ object Huffman {
   }
 
   def makeOrderedLeafList(freqs: List[(Char, Int)]): List[Leaf] =
-    freqs.sortWith(_._2 < _._2).map(x => Leaf(x._1,x._2))
+    freqs.sortWith(_._2 < _._2).map(x => Leaf(x._1, x._2))
 
 
   def singleton(trees: List[CodeTree]): Boolean = trees.size == 1
 
-  def combine(trees: List[CodeTree]): List[CodeTree] = ???
+  def combine(trees: List[CodeTree]): List[CodeTree] =
+    if (trees.size <= 2) trees
+    else insert(makeCodeTree(trees.head, trees(1)), trees.tail.tail)
+
+
+  def insert(x: CodeTree, xs: List[CodeTree]): List[CodeTree] = xs match {
+    case List() => List()
+    case y :: ys => if (weight(x) <= weight(y)) x :: ys else y :: insert(x, ys)
+  }
 
   def until(xxx: ???, yyy: ???)(zzz: ???): ??? = ???
 
