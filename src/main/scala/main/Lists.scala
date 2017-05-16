@@ -34,4 +34,17 @@ object Lists {
       else y :: merge(xs, ys1)
   }
 
+  def scaleList(xs: List[Double], factor: Double): List[Double] = xs match {
+    case Nil => xs
+    case y :: ys => y * factor :: scaleList(ys, factor)
+  }
+
+  def squareList_v1(xs: List[Int]): List[Int] = xs match {
+    case Nil => xs
+    case y :: ys => y * y :: squareList_v1(ys)
+  }
+
+  def squareList_v2(xs: List[Int]): List[Int] =
+    xs map (x => x * x)
+
 }
