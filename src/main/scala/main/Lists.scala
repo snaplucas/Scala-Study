@@ -44,7 +44,13 @@ object Lists {
     case y :: ys => y * y :: squareList_v1(ys)
   }
 
-  def squareList_v2(xs: List[Int]): List[Int] =
-    xs map (x => x * x)
+  def squareList_v2(xs: List[Int]): List[Int] = xs map (x => x * x)
+
+  def pack[T](xs: List[T]): List[List[T]] = xs match {
+    case Nil => Nil
+    case x :: _ =>
+      val (first, rest) = xs.span(y => y == x)
+      first :: pack(rest)
+  }
 
 }
