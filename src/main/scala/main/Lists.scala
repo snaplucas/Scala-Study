@@ -24,4 +24,6 @@ object Lists {
     case y :: ys => reverse(ys) ::: List(y)
   }
 
+  def removeAt[T](n: Int, xs: List[T]) = xs.take(n) ::: xs.drop(n + 1)
+
 }
