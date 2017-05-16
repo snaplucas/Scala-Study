@@ -26,4 +26,12 @@ object Lists {
 
   def removeAt[T](n: Int, xs: List[T]) = xs.take(n) ::: xs.drop(n + 1)
 
+  def merge(xs: List[Int], ys: List[Int]): List[Int] = (xs, ys) match {
+    case (Nil, z) => z
+    case (z, Nil) => z
+    case (x :: xs1, y :: ys1) =>
+      if (x < y) x :: merge(xs1, ys)
+      else y :: merge(xs, ys1)
+  }
+
 }
