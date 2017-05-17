@@ -55,4 +55,6 @@ object Lists {
 
   def encode[T](xs: List[T]): List[(T, Int)] = pack(xs).map(ys => (ys.head, ys.length))
 
+  def scalarProduct(xs: Vector[Double], ys: Vector[Double]) = (xs zip ys).map { case (x, y) => x * y }.sum
+
 }
