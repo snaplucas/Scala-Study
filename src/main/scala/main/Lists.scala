@@ -57,4 +57,6 @@ object Lists {
 
   def scalarProduct(xs: Vector[Double], ys: Vector[Double]) = (xs zip ys).map { case (x, y) => x * y }.sum
 
+  def isPrime(n: Int) = (2 until n).forall(d => n % d != 0)
+
 }
