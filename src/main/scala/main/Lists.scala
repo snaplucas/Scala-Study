@@ -69,6 +69,8 @@ object Lists {
 
   def scalarProduct(xs: Vector[Double], ys: Vector[Double]) = (xs zip ys).map { case (x, y) => x * y }.sum
 
+  def scalarProduct_2(xs: Vector[Double], ys: Vector[Double]) = (for {(x, y) <- xs zip ys} yield x * y).sum
+
   def isPrime(n: Int) = (2 until n).forall(d => n % d != 0)
 
   //Given a positive integer n, find all pairs of positive integers i and j, with 1 <= j < i < n such that i+j is prime
