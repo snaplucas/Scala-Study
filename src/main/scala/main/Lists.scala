@@ -2,6 +2,11 @@ package main
 
 object Lists {
 
+  def main(args: Array[String]): Unit = {
+    val s = "Hello World"
+    println(s.flatMap(c => List('.', c)))
+  }
+
   def last[T](xs: List[T]): T = xs match {
     case List() => throw new Error("last of empty list")
     case List(x) => x
@@ -55,8 +60,12 @@ object Lists {
 
   def encode[T](xs: List[T]): List[(T, Int)] = pack(xs).map(ys => (ys.head, ys.length))
 
+  def sum(xs: List[Int]): Int = xs match {
+    case Nil => 0
+    case y :: ys => y + sum(ys)
+  }
+
   def scalarProduct(xs: Vector[Double], ys: Vector[Double]) = (xs zip ys).map { case (x, y) => x * y }.sum
 
   def isPrime(n: Int) = (2 until n).forall(d => n % d != 0)
-
 }
