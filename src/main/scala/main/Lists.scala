@@ -73,7 +73,8 @@ object Lists {
 
   def isPrime(n: Int) = (2 until n).forall(d => n % d != 0)
 
-  //Given a positive integer n, find all pairs of positive integers i and j, with 1 <= j < i < n such that i+j is prime
+  //Given a positive integer n, find all pairs of positive integers i and j,
+  // with 1 <= j < i < n such that i+j is prime
   def pairs(n: Int) = (1 until n).flatMap(i => (1 until i).map(j => (i, j)).filter(pair => isPrime(pair._1 + pair._2)))
 
   def pairs_2(n: Int) = for {i <- 1 until n

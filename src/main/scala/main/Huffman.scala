@@ -77,15 +77,33 @@ object Huffman {
 
   def decodedSecret: List[Char] = decode(frenchCode, secret)
 
-  def encode(tree: CodeTree)(text: List[Char]): List[Bit] = ???
+  def encode(tree: CodeTree)(text: List[Char]): List[Bit] = {
+    def lookup(tree: CodeTree)(c: Char): List[Bit] = tree match {
+      case Leaf(_, _) => List()
+      case Fork(left, _, _, _) if chars(left).contains(c) => 0 :: lookup(left)(c)
+      case Fork(_, right, _, _) => 1 :: lookup(right)(c)
+    }
 
-  type CodeTable = List[(Char, List[Bit])]
+    text.flatMap(lookup(tree))
+  }
 
-  def codeBits(table: CodeTable)(char: Char): List[Bit] = ???
+  type Code = (Char, List[Bit])
+  type CodeTable = List[Code]
 
-  def convert(tree: CodeTree): CodeTable = ???
+  def codeBits(table: CodeTable)(char: Char): List[Bit] = {
+    table.filter((code) => code._1 == char).head._2
+  }
 
-  def mergeCodeTables(a: CodeTable, b: CodeTable): CodeTable = ???
+  def convert(tree: CodeTree): CodeTable = tree match {
+    case Leaf(c, _) => List((c, List()))
+    case Fork(left, right, _, _) => mergeCodeTables(convert(left), convert(right))
+  }
 
-  def quickEncode(tree: CodeTree)(text: List[Char]): List[Bit] = ???
+  def mergeCodeTables(a: CodeTable, b: CodeTable): CodeTable = {
+    def prepend(b: Bit)(code: Code): Code = (code._1, b :: code._2)
+
+    a.map(prepend(0)) ::: b.map(prepend(1))
+  }
+
+  def quickEncode(tree: CodeTree)(text: List[Char]): List[Bit] = text flatMap codeBits(convert(tree))
 }
