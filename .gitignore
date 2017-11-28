@@ -11,3 +11,4 @@ jackrabbit.iml
 jackrabbit/
 repository.xml
 repository/
+.DS_Store
