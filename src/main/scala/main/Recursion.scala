@@ -76,4 +76,20 @@ object Recursion {
     else if (money > 0 && coins.nonEmpty) countChange(money - coins.head, coins) + countChange(money, coins.tail)
     else 0
   }
+
+  def invertTree(root: TreeNode): TreeNode = {
+    if (root != null) {
+      val aux = new TreeNode(root.value)
+      aux.left = invertTree(root.right)
+      aux.right = invertTree(root.left)
+      aux
+    } else
+      null
+  }
+
+  class TreeNode(var _value: Int) {
+    var value: Int = _value
+    var left: TreeNode = _
+    var right: TreeNode = _
+  }
 }
