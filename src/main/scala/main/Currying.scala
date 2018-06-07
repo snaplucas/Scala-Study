@@ -11,9 +11,9 @@ object Currying {
 
   }
 
-  def sumInts = sum(x => x)
+  def sumInts: (Int, Int) => Int = sum(x => x)
 
-  def sumCubes = sum(x => x * x * x)
+  def sumCubes: (Int, Int) => Int = sum(x => x * x * x)
 
   def sum(f: Int => Int): (Int, Int) => Int = {
     def sumf(a: Int, b: Int): Int =

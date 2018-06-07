@@ -31,7 +31,7 @@ object Lists {
     case y :: ys => reverse(ys) ::: List(y)
   }
 
-  def removeAt[T](n: Int, xs: List[T]) = xs.take(n) ::: xs.drop(n + 1)
+  def removeAt[T](n: Int, xs: List[T]): List[T] = xs.take(n) ::: xs.drop(n + 1)
 
   def merge(xs: List[Int], ys: List[Int]): List[Int] = (xs, ys) match {
     case (Nil, z) => z
@@ -67,13 +67,13 @@ object Lists {
     case y :: ys => y + sum(ys)
   }
 
-  def scalarProduct(xs: Vector[Double], ys: Vector[Double]) = (xs zip ys).map { case (x, y) => x * y }.sum
+  def scalarProduct(xs: Vector[Double], ys: Vector[Double]): Double = (xs zip ys).map { case (x, y) => x * y }.sum
 
-  def scalarProduct_2(xs: Vector[Double], ys: Vector[Double]) = (for {(x, y) <- xs zip ys} yield x * y).sum
+  def scalarProduct_2(xs: Vector[Double], ys: Vector[Double]): Double = (for {(x, y) <- xs zip ys} yield x * y).sum
 
-  def isPrime(n: Int) = (2 until n).forall(d => n % d != 0)
+  def isPrime(n: Int): Boolean = (2 until n).forall(d => n % d != 0)
 
-  //Given a positive integer n, find all pairs of positive integers i and j,
+  // Given a positive integer n, find all pairs of positive integers i and j,
   // with 1 <= j < i < n such that i+j is prime
   def pairs(n: Int) = (1 until n).flatMap(i => (1 until i).map(j => (i, j)).filter(pair => isPrime(pair._1 + pair._2)))
 

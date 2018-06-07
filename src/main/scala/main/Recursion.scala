@@ -83,8 +83,7 @@ object Recursion {
       aux.left = invertTree(root.right)
       aux.right = invertTree(root.left)
       aux
-    } else
-      null
+    } else root
   }
 
   class TreeNode(var _value: Int) {
@@ -92,4 +91,5 @@ object Recursion {
     var left: TreeNode = _
     var right: TreeNode = _
   }
+
 }
